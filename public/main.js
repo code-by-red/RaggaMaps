@@ -259,7 +259,7 @@ async function fetchEventData() {
         } else {
             loadingElement.classList.add('hidden');
             errorElement.classList.remove('hidden');
-            errorElement.querySelector('p').textContent = 'Nenhum evento encontrado. Adicione eventos na planilha.';
+            errorElement.querySelector('p').textContent = 'Nenhum evento encontrado. Adicione eventos ou aguarde adicionarem.';
         }
         
     } catch (error) {
