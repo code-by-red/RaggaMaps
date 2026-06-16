@@ -7,7 +7,7 @@ let indexContent = fs.readFileSync(indexPath, 'utf8');
 
 // Get environment variables
 const appScriptUrl = process.env.APP_SCRIPT_URL || '';
-const spreadsheetId = process.env.SPREADSHEET_ID || '';
+const spreadsheetId = process.env.GOOGLE_SPREADSHEET_ID || '';
 
 // Replace placeholders with environment variables
 if (appScriptUrl) {
@@ -18,10 +18,10 @@ if (appScriptUrl) {
 }
 
 if (spreadsheetId) {
-    indexContent = indexContent.replace(/%%SPREADSHEET_ID%%/g, spreadsheetId);
-    console.log('SPREADSHEET_ID: ***CONFIGURED***');
+    indexContent = indexContent.replace(/%%GOOGLE_SPREADSHEET_ID%%/g, spreadsheetId);
+    console.log('GOOGLE_SPREADSHEET_ID: ***CONFIGURED***');
 } else {
-    console.log('SPREADSHEET_ID: NOT CONFIGURED');
+    console.log('GOOGLE_SPREADSHEET_ID: NOT CONFIGURED');
 }
 
 // Write the updated content back to index.html
