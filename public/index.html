@@ -155,7 +155,36 @@
     </main>
     
     <!-- Configuration -->
-    <script src="config.js"></script>
+    <script>
+        // Configuration - tries to load config.js first, then uses environment variables
+        window.CONFIG = {
+            APP_SCRIPT_URL: '%%APP_SCRIPT_URL%%',
+            GOOGLE_SHEETS: {
+                SPREADSHEET_ID: '%%SPREADSHEET_ID%%',
+                SHEET_NAME: 'dados',
+                RANGE: 'dados!A:J'
+            }
+        };
+        
+        // Try to load local config.js to override environment variables
+        fetch('config.js')
+            .then(response => {
+                if (response.ok) return response.text();
+                throw new Error('config.js not found');
+            })
+            .then(script => {
+                const scriptElement = document.createElement('script');
+                scriptElement.textContent = script;
+                document.head.appendChild(scriptElement);
+            })
+            .catch(error => {
+                console.log('Using environment variables or placeholders');
+                // Replace placeholders with actual values if they exist
+                if (window.CONFIG.APP_SCRIPT_URL === '%%APP_SCRIPT_URL%%') {
+                    console.warn('APP_SCRIPT_URL not configured');
+                }
+            });
+    </script>
     
     <!-- Main JavaScript -->
     <script src="main.js"></script>
