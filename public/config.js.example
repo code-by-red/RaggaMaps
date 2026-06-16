@@ -3,7 +3,7 @@
 
 const CONFIG = {
     // Google Apps Script URL - Replace with your actual Web App URL
-    APP_SCRIPT_URL: 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec',
+    APP_SCRIPT_URL: 'YOUR_APPS_SCRIPT_URL_HERE',
     
     // Google Sheets Configuration
     GOOGLE_SHEETS: {
