@@ -155,7 +155,27 @@
     </main>
     
     <!-- Configuration -->
-    <script src="config.js"></script>
+    <script>
+        // Try to load config.js, if it fails, use environment variables
+        window.CONFIG = {
+            APP_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbyLbNwQOkgpCvuUNTI-XOG9lgYM_4yt20Y-Fe2qdlvaR2Q-auOBL33DevJvJ4lxzUce/exec',
+            GOOGLE_SHEETS: {
+                SPREADSHEET_ID: '1CGvdjH0-H8itVbBXEeWG3vCRfQqJzBvAD2xNvpyQX0g',
+                SHEET_NAME: 'dados',
+                RANGE: 'dados!A:J'
+            }
+        };
+        
+        // Try to load config.js to override defaults
+        fetch('config.js')
+            .then(response => response.text())
+            .then(script => {
+                eval(script);
+            })
+            .catch(error => {
+                console.log('Using default configuration');
+            });
+    </script>
     
     <!-- Main JavaScript -->
     <script src="main.js"></script>

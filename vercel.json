@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "buildCommand": "node scripts/replace-env.js",
   "outputDirectory": "public",
   "builds": [
     {
