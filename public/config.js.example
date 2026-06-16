@@ -1,0 +1,17 @@
+// Configuration file for ReggaMaps - Example
+// Copy this file to config.js and fill in your actual values
+
+const CONFIG = {
+    // Google Apps Script URL - Replace with your actual Web App URL
+    APP_SCRIPT_URL: 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec',
+    
+    // Google Sheets Configuration
+    GOOGLE_SHEETS: {
+        SPREADSHEET_ID: 'YOUR_SPREADSHEET_ID',
+        SHEET_NAME: 'dados',
+        RANGE: 'dados!A:J' // Columns: nome, endereco, data, horario_inicio, horario_fim, status, description, link
+    },
+};
+
+// Make CONFIG available globally for main.js
+window.CONFIG = CONFIG;

@@ -1,0 +1,246 @@
+/* Custom Styles for RaggaMaps - Rasta Theme */
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000000;
+    color: #ffffff;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    overflow-x: hidden;
+}
+
+/* Rasta Color Variables */
+:root {
+    --rasta-green: #009B3A;
+    --rasta-yellow: #FFDF00;
+    --rasta-red: #FE0000;
+    --black: #000000;
+}
+
+/* Map Container */
+#map {
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Leaflet Map Dark Mode Customization */
+.leaflet-container {
+    background: #1a1a1a !important;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Dark map tiles using CSS filter */
+.leaflet-tile-pane {
+    filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+}
+
+.leaflet-tile {
+    filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+}
+
+/* Popup Styling */
+.leaflet-popup-content-wrapper {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border-radius: 0.75rem;
+    border: 2px solid var(--rasta-green);
+    box-shadow: 0 4px 15px rgba(0, 155, 58, 0.3);
+}
+
+.leaflet-popup-tip {
+    background: var(--rasta-green) !important;
+}
+
+.leaflet-popup-content {
+    margin: 1rem;
+    font-size: 0.875rem;
+    color: #ffffff;
+}
+
+.leaflet-popup-content h3 {
+    margin: 0 0 0.5rem 0;
+    color: var(--rasta-yellow);
+    font-size: 1.125rem;
+    font-weight: 600;
+    font-family: 'Oi', cursive;
+}
+
+.leaflet-popup-content p {
+    margin: 0.25rem 0;
+    color: #e0e0e0;
+}
+
+.leaflet-popup-content a {
+    color: var(--rasta-yellow);
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.leaflet-popup-content a:hover {
+    color: var(--rasta-green);
+}
+
+/* Custom Marker Styles */
+.custom-marker {
+    background: var(--rasta-red);
+    border: 3px solid var(--rasta-yellow);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s ease;
+}
+
+.custom-marker:hover {
+    transform: scale(1.2);
+}
+
+/* Event Card Styles */
+.event-card {
+    background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+    border: 2px solid var(--rasta-green);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 155, 58, 0.2);
+}
+
+.event-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 155, 58, 0.3);
+    border-color: var(--rasta-yellow);
+}
+
+.event-card h3 {
+    color: var(--rasta-yellow);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.event-card p {
+    color: #e0e0e0;
+    margin: 0.5rem 0;
+    font-size: 0.875rem;
+}
+
+.event-card .event-location {
+    color: var(--rasta-green);
+}
+
+.event-card .event-date {
+    color: var(--rasta-yellow);
+}
+
+.event-card .event-time {
+    color: var(--rasta-green);
+}
+
+.event-card .event-link {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background: linear-gradient(90deg, var(--rasta-green), var(--rasta-yellow), var(--rasta-red));
+    color: #000000;
+    text-decoration: none;
+    border-radius: 0.375rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.event-card .event-link:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(255, 223, 0, 0.4);
+}
+
+/* Side Menu Styles */
+#side-menu.active #menu-panel {
+    transform: translateX(0);
+}
+
+#menu-panel {
+    background: linear-gradient(180deg, #000000 0%, #1a1a1a 100%);
+}
+
+/* Loading Animation */
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+
+/* Responsive Map */
+@media (max-width: 768px) {
+    #map {
+        height: 50vh;
+    }
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--rasta-green), var(--rasta-yellow), var(--rasta-red));
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--rasta-yellow), var(--rasta-red), var(--rasta-green));
+}
+
+/* Map Controls Dark Mode */
+.leaflet-control-zoom {
+    border: 2px solid var(--rasta-green) !important;
+}
+
+.leaflet-control-zoom a {
+    background-color: #000000 !important;
+    color: var(--rasta-yellow) !important;
+}
+
+.leaflet-control-zoom a:hover {
+    background-color: var(--rasta-green) !important;
+    color: #ffffff !important;
+}
+
+.leaflet-bar {
+    background-color: #000000 !important;
+}
+
+/* Attribution Dark Mode */
+.leaflet-control-attribution {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    color: #e0e0e0 !important;
+}
+
+.leaflet-control-attribution a {
+    color: var(--rasta-yellow) !important;
+}

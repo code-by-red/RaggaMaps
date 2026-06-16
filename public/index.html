@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ReggaeMap - Qual a boa de hoje? Descubra eventos de Reggae e Sound System">
+    <title>RaggaMaps - Qual a boa de hoje?</title>
+    
+    <!-- Google Fonts - Oi Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oi&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        rasta: {
+                            green: '#009B3A',
+                            yellow: '#FFDF00',
+                            red: '#FE0000',
+                        },
+                        black: '#000000',
+                    },
+                    fontFamily: {
+                        oi: ['Oi', 'cursive'],
+                    },
+                    backgroundImage: {
+                        'rasta-gradient': 'linear-gradient(90deg, #009B3A, #FFDF00, #FE0000)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-black text-white min-h-screen overflow-x-hidden">
+    
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-[100] bg-black/95 backdrop-blur-sm">
+        <div class="container mx-auto px-4 py-4">
+            <!-- Title and Subtitle -->
+            <div class="text-center">
+                <h1 class="font-oi text-3xl md:text-4xl lg:text-5xl bg-rasta-gradient bg-clip-text text-transparent">
+                    RaggaMaps
+                </h1>
+                <p class="font-oi text-lg md:text-xl lg:text-2xl bg-rasta-gradient bg-clip-text text-transparent mt-1">
+                    Qual a boa de hoje?
+                </p>
+            </div>
+            
+            <!-- Navigation Buttons -->
+            <nav class="flex flex-wrap justify-center gap-2 mt-4">
+                <button id="btn-home" class="px-4 py-2 bg-rasta-green/20 border border-rasta-green text-rasta-green rounded-lg hover:bg-rasta-green hover:text-black transition-all text-sm font-medium">
+                    Início
+                </button>
+                <button id="btn-events" class="px-4 py-2 bg-rasta-green/20 border border-rasta-green text-rasta-green rounded-lg hover:bg-rasta-green hover:text-black transition-all text-sm font-medium">
+                    Eventos
+                </button>
+                <button id="btn-soundsystems" class="px-4 py-2 bg-rasta-green/20 border border-rasta-green text-rasta-green rounded-lg hover:bg-rasta-green hover:text-black transition-all text-sm font-medium">
+                    Sound Systems
+                </button>
+                <button id="btn-add-role" class="px-4 py-2 bg-rasta-red/20 border border-rasta-red text-rasta-red rounded-lg hover:bg-rasta-red hover:text-black transition-all text-sm font-medium">
+                    Adicionar Role
+                </button>
+                <button id="btn-about" class="px-4 py-2 bg-rasta-green/20 border border-rasta-green text-rasta-green rounded-lg hover:bg-rasta-green hover:text-black transition-all text-sm font-medium">
+                    Sobre
+                </button>
+                <button id="btn-contact" class="px-4 py-2 bg-rasta-green/20 border border-rasta-green text-rasta-green rounded-lg hover:bg-rasta-green hover:text-black transition-all text-sm font-medium">
+                    Contato
+                </button>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="pt-52 pb-8 px-4 relative z-10">
+        <div class="container mx-auto">
+            <!-- Loading State -->
+            <div id="loading" class="flex flex-col items-center justify-center py-12">
+                <div class="animate-spin rounded-full h-16 w-16 border-4 border-rasta-green border-t-transparent"></div>
+                <p class="mt-4 text-xl text-rasta-yellow">Carregando eventos...</p>
+            </div>
+            
+            <!-- Error State -->
+            <div id="error" class="hidden bg-black/90 border-2 border-rasta-red rounded-2xl p-8 text-center">
+                <p class="text-xl text-rasta-red">Erro ao carregar os dados. Tente novamente.</p>
+            </div>
+            
+            <!-- Events List -->
+            <div id="events-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 hidden">
+                <!-- Events will be dynamically inserted here -->
+            </div>
+            
+            <!-- About Section -->
+            <section id="about-section" class="mt-12 hidden">
+                <div class="bg-black/50 border-2 border-rasta-green rounded-2xl p-8">
+                    <h2 class="font-oi text-3xl bg-rasta-gradient bg-clip-text text-transparent mb-4">Sobre RaggaMaps</h2>
+                    <p class="text-gray-300 mb-4">
+                        RaggaMaps é uma plataforma dedicada a conectar você com os melhores eventos de reggae e sound systems da região.
+                        Nossa missão é promover a cultura reggae e facilitar o acesso a eventos de qualidade.
+                    </p>
+                    <p class="text-gray-300">
+                        Versão 1.0.0 - Desenvolvido com 💛❤️💚
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Sound Systems Section -->
+            <section id="soundsystems-section" class="mt-12 hidden">
+                <div class="bg-black/50 border-2 border-rasta-green rounded-2xl p-8">
+                    <h2 class="font-oi text-3xl bg-rasta-gradient bg-clip-text text-transparent mb-4">Sound Systems</h2>
+                    <p class="text-gray-300 mb-4">
+                        Conheça os sound systems que fazem a cena reggae acontecer:
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-black/30 border border-rasta-yellow rounded-lg p-4">
+                            <h3 class="text-rasta-yellow font-bold mb-2">Sound System 1</h3>
+                            <p class="text-gray-400 text-sm">Em breve...</p>
+                        </div>
+                        <div class="bg-black/30 border border-rasta-yellow rounded-lg p-4">
+                            <h3 class="text-rasta-yellow font-bold mb-2">Sound System 2</h3>
+                            <p class="text-gray-400 text-sm">Em breve...</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Contact Section -->
+            <section id="contact-section" class="mt-12 hidden">
+                <div class="bg-black/50 border-2 border-rasta-green rounded-2xl p-8">
+                    <h2 class="font-oi text-3xl bg-rasta-gradient bg-clip-text text-transparent mb-4">Contato</h2>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4">
+                            <span class="text-rasta-yellow">📧</span>
+                            <a href="mailto:contato@raggamaps.com" class="text-gray-300 hover:text-rasta-green transition-colors">contato@raggamaps.com</a>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span class="text-rasta-yellow">📱</span>
+                            <span class="text-gray-300">Em breve: WhatsApp</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span class="text-rasta-yellow">🌐</span>
+                            <span class="text-gray-300">Em breve: Redes Sociais</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <!-- Configuration -->
+    <script src="config.js"></script>
+    
+    <!-- Main JavaScript -->
+    <script src="main.js"></script>
+    
+    <!-- Add Role Modal -->
+    <div id="add-role-modal" class="fixed inset-0 z-[10000] hidden">
+        <div class="absolute inset-0 bg-black/80" id="modal-overlay"></div>
+        <div class="absolute inset-0 flex items-center justify-center p-4">
+            <div class="bg-black border-2 border-rasta-green rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="font-oi text-2xl bg-rasta-gradient bg-clip-text text-transparent">Adicionar Role</h2>
+                        <button id="close-modal" class="text-rasta-red hover:text-rasta-yellow transition-colors">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <form id="add-role-form" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-rasta-yellow mb-2">Nome do Evento *</label>
+                            <input type="text" id="role-name" required class="w-full px-4 py-2 bg-black/50 border border-rasta-green rounded-lg text-white focus:outline-none focus:border-rasta-yellow" placeholder="Ex: Reggae Festival">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-rasta-yellow mb-2">Nome da Rua/Av *</label>
+                            <input type="text" id="role-street" required class="w-full px-4 py-2 bg-black/50 border border-rasta-green rounded-lg text-white focus:outline-none focus:border-rasta-yellow" placeholder="Ex: Rua das Flores">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-rasta-yellow mb-2">Número *</label>
+                            <input type="text" id="role-number" required class="w-full px-4 py-2 bg-black/50 border border-rasta-green rounded-lg text-white focus:outline-none focus:border-rasta-yellow" placeholder="Ex: 123">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-rasta-yellow mb-2">Bairro *</label>
+                            <input type="text" id="role-neighborhood" required class="w-full px-4 py-2 bg-black/50 border border-rasta-green rounded-lg text-white focus:outline-none focus:border-rasta-yellow" placeholder="Ex: Centro">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-rasta-yellow mb-2">Cidade *</label>
+                            <input type="text" id="role-city" required class="w-full px-4 py-2 bg-black/50 border border-rasta-green rounded-lg text-white focus:outline-none focus:border-rasta-yellow" placeholder="Ex: Taboão da Serra">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-rasta-yellow mb-2">Data do Role *</label>
+                            <input type="date" id="role-date" required class="w-full px-4 py-2 bg-black/50 border border-rasta-green rounded-lg text-white focus:outline-none focus:border-rasta-yellow">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-rasta-yellow mb-2">Horário de Início *</label>
+                            <input type="time" id="role-start-time" required class="w-full px-4 py-2 bg-black/50 border border-rasta-green rounded-lg text-white focus:outline-none focus:border-rasta-yellow">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-rasta-yellow mb-2">Horário Final (opcional)</label>
+                            <input type="time" id="role-end-time" class="w-full px-4 py-2 bg-black/50 border border-rasta-green rounded-lg text-white focus:outline-none focus:border-rasta-yellow">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-rasta-yellow mb-2">Status</label>
+                            <select id="role-status" class="w-full px-4 py-2 bg-black/50 border border-rasta-green rounded-lg text-white focus:outline-none focus:border-rasta-yellow">
+                                <option value="confirmado">Confirmado</option>
+                                <option value="pendente">Pendente</option>
+                                <option value="cancelado">Cancelado</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-rasta-yellow mb-2">Descrição</label>
+                            <textarea id="role-description" rows="3" class="w-full px-4 py-2 bg-black/50 border border-rasta-green rounded-lg text-white focus:outline-none focus:border-rasta-yellow" placeholder="Descrição do evento..."></textarea>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-rasta-yellow mb-2">Link (opcional)</label>
+                            <input type="url" id="role-link" class="w-full px-4 py-2 bg-black/50 border border-rasta-green rounded-lg text-white focus:outline-none focus:border-rasta-yellow" placeholder="https://...">
+                        </div>
+                        
+                        <button type="submit" class="w-full py-3 bg-gradient-to-r from-rasta-green via-rasta-yellow to-rasta-red text-black font-bold rounded-lg hover:opacity-90 transition-opacity">
+                            Adicionar Role
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
